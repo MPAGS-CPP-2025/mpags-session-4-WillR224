@@ -6,13 +6,17 @@
 int main(int argc, char* argv[])
 {
     const std::vector<std::string> cmdLineArgs{argv, argv + argc};
-    for (int i{0}; i < cmdLineArgs.size(); i++) {
+    for (int i{1}; i < cmdLineArgs.size(); i++) {
         if (cmdLineArgs[i] == "--help" || cmdLineArgs[i] == "-h") {
+            std::cout << "Usage: mpags-cipher [-h/--help] \n\n" << std::endl;
             std::cout << "Enter anything after the executable to have it returned" << std::endl;
             return 0;
         }
-        std::cout << cmdLineArgs[i] << std::endl;
         }
+    for (int i{1}; i < cmdLineArgs.size(); i++) {
+        std::cout << cmdLineArgs[i] << std::endl;
+    }
+
         // Initialise variables
         char c{'x'};
         std::string out_text;
