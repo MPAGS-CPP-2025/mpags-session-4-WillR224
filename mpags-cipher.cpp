@@ -13,10 +13,10 @@ int main(int argc, char* argv[])
             std::cout << "Usage: mpags-cipher [-h/--help]" << std::endl;
             std::cout << "Enter anything after the executable to have it returned" << std::endl;
         }
-        if (cmdLineArgs[i] == "--version" || cmdLineArgs[i] == "-v") {
+        else if (cmdLineArgs[i] == "--version" || cmdLineArgs[i] == "-v") {
             std::cout << "mpags-cipher version 1.0" << std::endl;
         }
-        if (cmdLineArgs[i] == "-i" && inputflag == false) {
+        else if (cmdLineArgs[i] == "-i" && inputflag == false) {
             if (i + 1 == cmdLineArgs.size() || cmdLineArgs[i + 1][0] == '-'){
                 std::cerr << "Error: No input file specified" << std::endl;
                 return 1;
@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
             return 1;
         }
         
-        if (cmdLineArgs[i] == "-o" && outputflag == false) {
+        else if (cmdLineArgs[i] == "-o" && outputflag == false) {
             if (i + 1 == cmdLineArgs.size() || cmdLineArgs[i + 1][0] == '-'){
                 std::cerr << "Error: No output file specified" << std::endl;
                 return 1;
@@ -43,6 +43,10 @@ int main(int argc, char* argv[])
         }
         else if (cmdLineArgs[i] == "-o" && outputflag == true){
             std::cerr << "Error: Output file already specified" << std::endl;
+            return 1;
+        }
+        else {
+            std::cerr << "Error: Unrecognized command line option '" << cmdLineArgs[i] << "'" << std::endl;
             return 1;
         }
     }
