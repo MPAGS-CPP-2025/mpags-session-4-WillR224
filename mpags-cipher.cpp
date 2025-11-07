@@ -8,14 +8,32 @@ int main(int argc, char* argv[])
     const std::vector<std::string> cmdLineArgs{argv, argv + argc};
     for (int i{1}; i < cmdLineArgs.size(); i++) {
         if (cmdLineArgs[i] == "--help" || cmdLineArgs[i] == "-h") {
-            std::cout << "Usage: mpags-cipher [-h/--help] \n\n" << std::endl;
+            std::cout << "Usage: mpags-cipher [-h/--help]" << std::endl;
             std::cout << "Enter anything after the executable to have it returned" << std::endl;
-            return 0;
         }
+        if (cmdLineArgs[i] == "--version" || cmdLineArgs[i] == "-v") {
+            std::cout << "mpags-cipher version 1.0" << std::endl;
         }
-    for (int i{1}; i < cmdLineArgs.size(); i++) {
-        std::cout << cmdLineArgs[i] << std::endl;
+        if (cmdLineArgs[i] == "-i") {
+            if (i + 1 == cmdLineArgs.size() || cmdLineArgs[i + 1][0] == '-'){
+                std::cerr << "Error: No input file specified" << std::endl;
+                return 1;
+            }
+            std::string input_file = cmdLineArgs[i + 1];
+            std::cout << "Input file set to: " << input_file << std::endl;
+            std::cout << "Input file handling not yet supported" << std::endl;
+        }
+        if (cmdLineArgs[i] == "-o") {
+            if (i + 1 == cmdLineArgs.size() || cmdLineArgs[i + 1][0] == '-'){
+                std::cerr << "Error: No output file specified" << std::endl;
+                return 1;
+            }
+            std::string output_file = cmdLineArgs[i + 1];
+            std::cout << "Output file set to: " << output_file << std::endl;
+            std::cout << "Output file handling not yet supported" << std::endl;
+        }
     }
+    return 0;
 
         // Initialise variables
         char c{'x'};
@@ -68,4 +86,5 @@ int main(int argc, char* argv[])
 
         // Print out the transliterated text
         std::cout << out_text << std::endl;
-    }
+}
+
